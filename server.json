@@ -1,28 +1,152 @@
 {
   "products": [
     {
-      "id": "123",
+      "id": "1",
       "title": "Nome do produto 01",
-      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/180479_1822830_20191119125824.png",
       "price": 50
     },
     {
-      "id": "1234",
+      "id": "2",
       "title": "Nome do produto 02",
-      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg",
-      "price": 60
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/46970_517282_20190616135236.png",
+      "price": 60.99
     },
     {
-      "id": "12345",
+      "id": "3",
       "title": "Nome do produto 03",
-      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714487_20191002201413.png",
       "price": 70
     },
     {
-      "id": "123456",
+      "id": "4",
       "title": "Nome do produto 04",
-      "image_url": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg",
-      "price": 80
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714457_20191002201411.png",
+      "price": 80.90
+    },
+    {
+      "id": "5",
+      "title": "Nome do produto 05",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/180479_1822830_20191119125824.png",
+      "price": 50
+    },
+    {
+      "id": "6",
+      "title": "Nome do produto 06",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/46970_517282_20190616135236.png",
+      "price": 60.99
+    },
+    {
+      "id": "7",
+      "title": "Nome do produto 07",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714487_20191002201413.png",
+      "price": 70
+    },
+    {
+      "id": "8",
+      "title": "Nome do produto 08",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714457_20191002201411.png",
+      "price": 80.90
+    },{
+      "id": "9",
+      "title": "Nome do produto 09",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/180479_1822830_20191119125824.png",
+      "price": 50
+    },
+    {
+      "id": "10",
+      "title": "Nome do produto 10",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/46970_517282_20190616135236.png",
+      "price": 60.99
+    },
+    {
+      "id": "11",
+      "title": "Nome do produto 11",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714487_20191002201413.png",
+      "price": 70
+    },
+    {
+      "id": "12",
+      "title": "Nome do produto 12",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714457_20191002201411.png",
+      "price": 80.90
+    },
+    {
+      "id": "13",
+      "title": "Nome do produto 13",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/180479_1822830_20191119125824.png",
+      "price": 50
+    },
+    {
+      "id": "14",
+      "title": "Nome do produto 14",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/46970_517282_20190616135236.png",
+      "price": 60.99
+    },
+    {
+      "id": "15",
+      "title": "Nome do produto 15",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714487_20191002201413.png",
+      "price": 70
+    },
+    {
+      "id": "16",
+      "title": "Nome do produto 16",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714457_20191002201411.png",
+      "price": 80.90
+    },
+    {
+      "id": "17",
+      "title": "Nome do produto 17",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/180479_1822830_20191119125824.png",
+      "price": 50
+    },
+    {
+      "id": "18",
+      "title": "Nome do produto 18",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/46970_517282_20190616135236.png",
+      "price": 60.99
+    },
+    {
+      "id": "19",
+      "title": "Nome do produto 19",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714487_20191002201413.png",
+      "price": 70
+    },
+    {
+      "id": "20",
+      "title": "Nome do produto 20",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714457_20191002201411.png",
+      "price": 80.90
+    },{
+      "id": "21",
+      "title": "Nome do produto 21",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/180479_1822830_20191119125824.png",
+      "price": 50
+    },
+    {
+      "id": "22",
+      "title": "Nome do produto 22",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/46970_517282_20190616135236.png",
+      "price": 60.99
+    },
+    {
+      "id": "23",
+      "title": "Nome do produto 23",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714487_20191002201413.png",
+      "price": 70
+    },
+    {
+      "id": "24",
+      "title": "Nome do produto 24",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714457_20191002201411.png",
+      "price": 80.90
+    },
+    {
+      "id": "26",
+      "title": "Nome do produto 25",
+      "image_url": "https://images.lojanike.com.br/1024x1024/produto/96747_1714487_20191002201413.png",
+      "price": 80.90
     }
   ]
 }

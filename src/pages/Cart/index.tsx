@@ -1,30 +1,28 @@
+// Modules
 import React, { useMemo } from 'react';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
+// Contexts & Utils
+import { useCart } from '../../hooks/cart';
+import { useTheme } from '../../hooks/theme';
+import cartTotal from '../../utils/cartTotal';
+import totalItensInCart from '../../utils/totalItensInCart';
+
+// Components
+import CartItem from '../../components/CartItem';
+
+// Styles
 import {
   Container,
   ProductContainer,
   ProductList,
-  Product,
-  ProductImage,
-  ProductTitleContainer,
-  ProductTitle,
-  ProductPriceContainer,
-  ProductSinglePrice,
-  TotalContainer,
-  ProductPrice,
-  ProductQuantity,
-  ActionContainer,
   ActionButton,
   TotalProductsContainer,
   TotalProductsText,
   SubtotalValue,
 } from './styles';
-
-import { useCart } from '../../hooks/cart';
-
-import formatValue from '../../utils/formatValue';
 
 interface Product {
   id: string;
@@ -35,83 +33,66 @@ interface Product {
 }
 
 const Cart: React.FC = () => {
-  const { increment, decrement, products } = useCart();
+  const { products } = useCart();
 
-  function handleIncrement(id: string): void {
-    increment(id);
-  }
+  const { theme } = useTheme();
 
-  function handleDecrement(id: string): void {
-    decrement(id);
-  }
+  const navigation = useNavigation();
 
-  const cartTotal = useMemo(() => {
-    const totalValue = products.reduce((total, product) => {
-      return total + product.quantity * product.price;
-    }, 0);
+  const handleCartTotal = useMemo(() => cartTotal(products), [products]);
 
-    return formatValue(totalValue);
-  }, [products]);
-
-  const totalItensInCart = useMemo(() => {
-    const totalItens = products.reduce((total, product) => {
-      return total + product.quantity;
-    }, 0);
-
-    return totalItens;
-  }, [products]);
+  const handleTotalItensInCart = useMemo(() => totalItensInCart(products), [
+    products,
+  ]);
 
   return (
     <Container>
-      <ProductContainer>
-        <ProductList
-          data={products}
-          keyExtractor={item => item.id}
-          ListFooterComponent={<View />}
-          ListFooterComponentStyle={{
-            height: 80,
+      {products.length === 0 ? (
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
-          renderItem={({ item }: { item: Product }) => (
-            <Product>
-              <ProductImage source={{ uri: item.image_url }} />
-              <ProductTitleContainer>
-                <ProductTitle>{item.title}</ProductTitle>
-                <ProductPriceContainer>
-                  <ProductSinglePrice>
-                    {formatValue(item.price)}
-                  </ProductSinglePrice>
+        >
+          <Text style={{ fontSize: 18, color: theme.texts.primary }}>
+            Seu carrinho está vazio!
+          </Text>
 
-                  <TotalContainer>
-                    <ProductQuantity>{`${item.quantity}x`}</ProductQuantity>
+          <ActionButton
+            style={{ marginTop: 10 }}
+            onPress={() => navigation.goBack()}
+          >
+            <FeatherIcon
+              name="chevron-left"
+              color={theme.colors.primary}
+              size={16}
+            />
+            <Text style={{ marginLeft: 5, color: theme.texts.primary }}>
+              Voltar às compras
+            </Text>
+          </ActionButton>
+        </View>
+      ) : (
+        <ProductContainer>
+          <ProductList
+            data={products}
+            keyExtractor={item => item.id}
+            ListFooterComponent={<View />}
+            ListFooterComponentStyle={{
+              height: 80,
+            }}
+            renderItem={({ item }: { item: Product }) => (
+              <CartItem key={item.id} data={item} />
+            )}
+          />
+        </ProductContainer>
+      )}
 
-                    <ProductPrice>
-                      {formatValue(item.price * item.quantity)}
-                    </ProductPrice>
-                  </TotalContainer>
-                </ProductPriceContainer>
-              </ProductTitleContainer>
-              <ActionContainer>
-                <ActionButton
-                  testID={`increment-${item.id}`}
-                  onPress={() => handleIncrement(item.id)}
-                >
-                  <FeatherIcon name="plus" color="#E83F5B" size={16} />
-                </ActionButton>
-                <ActionButton
-                  testID={`decrement-${item.id}`}
-                  onPress={() => handleDecrement(item.id)}
-                >
-                  <FeatherIcon name="minus" color="#E83F5B" size={16} />
-                </ActionButton>
-              </ActionContainer>
-            </Product>
-          )}
-        />
-      </ProductContainer>
       <TotalProductsContainer>
         <FeatherIcon name="shopping-cart" color="#fff" size={24} />
-        <TotalProductsText>{`${totalItensInCart} itens`}</TotalProductsText>
-        <SubtotalValue>{cartTotal}</SubtotalValue>
+        <TotalProductsText>{`${handleTotalItensInCart} itens`}</TotalProductsText>
+        <SubtotalValue>{handleCartTotal}</SubtotalValue>
       </TotalProductsContainer>
     </Container>
   );

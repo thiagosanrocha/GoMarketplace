@@ -1,25 +1,17 @@
+// Modules
 import React, { useState, useEffect } from 'react';
-import FeatherIcon from 'react-native-vector-icons/Feather';
+import { View, Dimensions } from 'react-native';
 
-import { View } from 'react-native';
-
-import formatValue from '../../utils/formatValue';
-import { useCart } from '../../hooks/cart';
+// Services
 import api from '../../services/api';
 
+// Components
+import ProductItem from '../../components/ProductItem';
 import FloatingCart from '../../components/FloatingCart';
+import ShimmerProduct from '../../components/ShimmerProduct';
 
-import {
-  Container,
-  ProductContainer,
-  ProductImage,
-  ProductList,
-  Product,
-  ProductTitle,
-  PriceContainer,
-  ProductPrice,
-  ProductButton,
-} from './styles';
+// Styles
+import { Container, ProductContainer, ProductList } from './styles';
 
 interface Product {
   id: string;
@@ -28,9 +20,10 @@ interface Product {
   price: number;
 }
 
-const Dashboard: React.FC = () => {
-  const { addToCart } = useCart();
+const screenWidth = Dimensions.get('screen').width;
 
+const Dashboard: React.FC = () => {
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -38,39 +31,28 @@ const Dashboard: React.FC = () => {
       const { data } = await api.get<Product[]>('products');
 
       setProducts(data);
+
+      setLoading(false);
     })();
   }, []);
-
-  function handleAddToCart(item: Product): void {
-    addToCart(item);
-  }
 
   return (
     <Container>
       <ProductContainer>
-        <ProductList
-          data={products}
-          keyExtractor={item => item.id}
-          ListFooterComponent={<View />}
-          ListFooterComponentStyle={{
-            height: 80,
-          }}
-          renderItem={({ item }) => (
-            <Product>
-              <ProductImage source={{ uri: item.image_url }} />
-              <ProductTitle>{item.title}</ProductTitle>
-              <PriceContainer>
-                <ProductPrice>{formatValue(item.price)}</ProductPrice>
-                <ProductButton
-                  testID={`add-to-cart-${item.id}`}
-                  onPress={() => handleAddToCart(item)}
-                >
-                  <FeatherIcon size={20} name="plus" color="#C4C4C4" />
-                </ProductButton>
-              </PriceContainer>
-            </Product>
-          )}
-        />
+        {loading ? (
+          <ShimmerProduct />
+        ) : (
+          <ProductList
+            data={products}
+            keyExtractor={item => item.id}
+            ListFooterComponent={<View />}
+            ListFooterComponentStyle={{
+              height: 80,
+            }}
+            numColumns={screenWidth > 600 ? 3 : 2}
+            renderItem={({ item }) => <ProductItem key={item.id} data={item} />}
+          />
+        )}
       </ProductContainer>
       <FloatingCart />
     </Container>

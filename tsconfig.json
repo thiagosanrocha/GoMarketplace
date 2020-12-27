@@ -64,5 +64,5 @@
     "jest.config.js"
   ],
   "include": ["**/src/**/*.ts", "**/src/**/*.tsx"],
-  "files": ["src/@types/index.d.ts"]
+  "files": ["src/@types/index.d.ts", "src/styles/themes/theme.d.ts"]
 }

@@ -12,7 +12,7 @@ export const Container = styled.View`
   align-items: center;
 `;
 
-export const CartPricing = styled.Text`
+export const CartPricing = styled.TouchableOpacity`
   padding: 20px;
 `;
 
